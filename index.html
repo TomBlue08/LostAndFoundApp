@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #lostList {
+            display: none;
+            margin-top: 20px;
+        }
+        .item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lost & Found</h1>
+    <button onclick="toggleList()">Show Lost and Found List</button>
+    <br>
+    <input type="text" id="search" placeholder="Search items..." onkeyup="searchItems()">
+    <div id="lostList">
+        <div class="item">
+            <p><strong>Item:</strong> Wallet</p>
+            <button onclick="showDetails(0)">View Details</button>
+            <p id="details-0" class="hidden">Found at Library. Contact: 123-456-7890</p>
+        </div>
+        <div class="item">
+            <p><strong>Item:</strong> Backpack</p>
+            <button onclick="showDetails(1)">View Details</button>
+            <p id="details-1" class="hidden">Found in Cafeteria. Contact: 987-654-3210</p>
+        </div>
+        <button onclick="registerItem()">Register Lost Item</button>
+    </div>
+    
+    <script>
+        function toggleList() {
+            let list = document.getElementById("lostList");
+            list.style.display = (list.style.display === "none" || list.style.display === "") ? "block" : "none";
+        }
+
+        function showDetails(index) {
+            let details = document.getElementById(`details-${index}`);
+            details.classList.toggle("hidden");
+        }
+
+        function searchItems() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let items = document.querySelectorAll(".item");
+            
+            items.forEach(item => {
+                let text = item.innerText.toLowerCase();
+                item.style.display = text.includes(input) ? "block" : "none";
+            });
+        }
+
+        function registerItem() {
+            alert("Feature to register lost item coming soon!");
+        }
+    </script>
+</body>
+</html>
